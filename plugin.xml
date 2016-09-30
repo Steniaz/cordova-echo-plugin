@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="com-rombit-plugins-alpr" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>ALPR</name>
+    <js-module name="ALPR" src="www/ALPR.js">
+        <clobbers target="ALPR" />
+    </js-module>
+
+
+    <platform name="android">
+	  <config-file target="config.xml" parent="/*">
+	    <feature name="ALPR">
+	      <param name="android-package" value="com.rombit.plugin.ALPR"/>
+	    </feature>
+	  </config-file>
+	  <source-file src="src/android/com/rombit/plugin/ALPR.java" target-dir="src/com/rombit/plugin" />
+	</platform>
+</plugin>
