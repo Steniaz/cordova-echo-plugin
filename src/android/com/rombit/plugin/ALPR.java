@@ -15,8 +15,7 @@ import org.openalpr.model.ResultsError;
 public class ALPR extends CordovaPlugin {
     static final String ANDROID_DATA_DIR = "/data/data/com.rombit.plugin";
 
-    final String openAlprConfFile = ANDROID_DATA_DIR + Fi
-    le.separatorChar + "runtime_data" + File.separatorChar + "openalpr.conf";
+    final String openAlprConfFile = ANDROID_DATA_DIR + File.separatorChar + "runtime_data" + File.separatorChar + "openalpr.conf";
 
     @Override
     public boolean execute(
