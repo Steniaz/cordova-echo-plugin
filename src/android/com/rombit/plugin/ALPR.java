@@ -35,7 +35,6 @@ public class ALPR extends CordovaPlugin {
             String imagePath,
             CallbackContext callbackContext
     ) {
-        webView.loadUrl("javascript:console.log('hello');");
         String result = OpenALPR.Factory.create(this.cordova.getActivity().getApplicationContext(), ANDROID_DATA_DIR).recognizeWithCountryRegionNConfig("eu", "", imagePath, openAlprConfFile, 10);
         callbackContext.success(result);
     }
