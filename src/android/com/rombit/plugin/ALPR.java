@@ -31,7 +31,7 @@ public class ALPR extends CordovaPlugin {
         return false;
     }
 
-    private String alpr(
+    private void alpr(
             String imagePath,
             CallbackContext callbackContext
     ) {
