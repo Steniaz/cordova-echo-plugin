@@ -1,5 +1,5 @@
 var exec = require('cordova/exec');
 
-exports.echo = function(arg0, success, error) {
-    exec(success, error, "ALPR", "echo", [arg0]);
+exports.alpr = function(arg0, success, error) {
+    exec(success, error, "ALPR", "alpr", [arg0]);
 };
