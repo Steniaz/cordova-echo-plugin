@@ -5,6 +5,7 @@
         <clobbers target="ALPR" />
     </js-module>
 
+    <framework src="openALPR.gradle" custom="true" type="gradleReference" />
 
     <platform name="android">
 	  <config-file target="config.xml" parent="/*">

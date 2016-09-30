@@ -6,36 +6,35 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
 import android.content.Context;
-import android.widget.Toast;
+
+import org.openalpr.OpenALPR;
+import org.openalpr.model.Results;
+import org.openalpr.model.ResultsError;
 
 public class ALPR extends CordovaPlugin {
-  @Override
-  public boolean execute(
-    String action, 
-    JSONArray args, 
-    CallbackContext callbackContext
-  ) throws JSONException {
-    if ("echo".equals(action)) {
-      echo(args.getString(0), callbackContext);
-      return true;
-    }
-    
-    return false;
-  }
+    static final String ANDROID_DATA_DIR = "/data/data/com.rombit.plugin";
 
-  private void echo(
-    String msg, 
-    CallbackContext callbackContext
-  ) {
-    if (msg == null || msg.length() == 0) {
-      callbackContext.error("Empty message!");
-    } else {
-      Toast.makeText(
-        webView.getContext(), 
-        msg, 
-        Toast.LENGTH_LONG
-      ).show();
-      callbackContext.success(msg);
+    final String openAlprConfFile = ANDROID_DATA_DIR + File.separatorChar + "runtime_data" + File.separatorChar + "openalpr.conf";
+
+    @Override
+    public boolean execute(
+        String action,
+        JSONArray args,
+        CallbackContext callbackContext
+        ) throws JSONException {
+        if ("alpr".equals(action)) {
+            alpr(args.getString(0), callbackContext);
+            return true;
+        }
+
+        return false;
     }
-  }
+
+    private String alpr(
+            String imagePath,
+            CallbackContext callbackContext
+    ) {
+        String result = OpenALPR.Factory.create(MainActivity.this, ANDROID_DATA_DIR).recognizeWithCountryRegionNConfig("eu", "", imagePath, openAlprConfFile, 10);
+        callbackContext.success(result);
+    }
 }
